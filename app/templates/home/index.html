@@ -1,18 +1,10 @@
 {% extends "base.html" %} {% block title %}testit.tech{% endblock %} {% block body %}
 <div class="jumbotron">
   <div class="container">
-    <p class="style_separator">This web app is mainly for practicing flask (a Python Microframework), Python, Linux and testing out different technologies.</p>
-    <p>Sqlite is also used here for several tasks, amongst many for storing data for a Notebook
-      <br>
-    </p>
-    <p class="style_separator">Notebook is an app where you can save / delete notes. A note has an id, note, link, topic, create-date and owner.</p>
-    <p>The "Technology" tab contains information and testing of different software and cmd's.</p>
-    
-    <!-- web section <p class="style_separator">Ready to test a mathbot 1.0 
-        <a href="chat">Chatbot (Math)</a>
-    </p>
-    <p>Are you a multiplication master?</p>
-    -->
+    <p class="style_separator">This web app is mainly for practicing flask (a Python web Microframework), Python, and Jinja2.
+      <br> Beside that, learning Linux and testing out different technologies and store the content on this site.</p>
+    <p class="style_separator">No Javascript is used, just Python, Flask, Jinja2, SQLite</p>
+
     <p class="style_separator">testit.tech is powered by:</p>
     <ul>
       <li>
@@ -21,17 +13,19 @@
 
       <li>
         <a href="http://gunicorn.org/" target="_blank">Gunicorn </a>Python WSGI HTTP server for UNIX
-</li>
+      </li>
 
       <li>
         <a href="https://www.digitalocean.com/" target="_blank">DigitalOcean </a>Cloud computing, designed for developers (Linux)
-</li>
+      </li>
       <li>
         <a href="https://domainname.shop/?currency=GBP&lang=en" target="_blank">doimainnameshop </a>Domain at doimainnameshop
-</li>
+      </li>
       <li>And a bunch of tutorials, and links for learning *</li>
     </ul>
-    <p><font size=2>* Most important links / tutorials are found under "Links used" in upper right corner of the menu</font></p>
+    <p>
+      <font size=2>* Most important links / tutorials are found under "Links used" in upper right corner of the menu</font>
+    </p>
   </div>
   <br>
   <!-- web section  -->
@@ -39,7 +33,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse1">To Do: Web</a>
+          <a data-toggle="collapse" href="#collapse1">To Do:</a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
@@ -47,125 +41,26 @@
         <ul>
           <li>HTML5 tags</li>
           <li>Pylint on all modules</li>
-          <li>Cookies</li>
-          <li>Pagenation</li>
-          <li>Logging</li>
-          <li>Form</li>
-          <li>Sessions</li>
-          <li>Post / redirect</li>
-          <li>ORM SQLAlchemy Sqlite3</li>
           <li>Gunicorn upstart script</li>
           <li>Postgresql</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapseOther">To Do: Technology + HTML page </a>
-        </h4>
-      </div>
-      <div id="collapseOther" class="panel-collapse collapse">
-        <br>
-        <ul>
-          <li>Postgresql</li>
-          <li>Upload the finished API (bootstrap on doc section)</li>
-          <li>HTML page for :Zabbix 3.2 + Zabbix API py, Octopus (pagenation)</li>
-          <li>Machine learning with graph</li>
-          <li>Make API tab and test differetn API's</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- other section  -->
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse2">To Do: Other</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <br>
-        <ul>
-          <li>Crash course 1-11, data visual 15-16</li>
-          <li>Logging</li>
-          <li>Psql advanced:</li>
-          <li>Efficent / time / index / jsonb</li>
-          <li>Zabbix 3.4</li>
-          <li>Improve doc / read me / structure on Github</li>
-          <li>Win service C#, CA for Zabbix API (WFA??</li>
-          <li>More Octopus / doc / make steps with scripts</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- idea section  -->
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse3">To Do: Idea</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <br>
-        <ul>
-          <li>Subject to learn more about (history, people, places)</li>
-          <li>Chat app</li>
-          <li>Machine learning</li>
-          <li>Blackjack OOP game cmd / Pygame</li>
-          <li>Kivy android</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- done section  -->
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse4">Done:</a>
-        </h4>
-      </div>
-      <div id="collapse4" class="panel-collapse collapse">
-        <br>
-        <ul>
-          <li>Use:data-toggle="collapse": for Blog</li>
-          <li>Flask</li>
-          <li>Error handling 404, 400, etc</li>
-          <li>Gunicorn / Nginx proxy (deploy user / small pro)</li>
-          <li>Sqlite3 simple CRUD blog</li>
-          <li>Sqlite3 CR form to save urls (id, url, date)</li>
-          <li>Some forms</li>
-          <li>Visual Studio Code</li>
-          <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-          <li>DigitalOcean</li>
-          <li>Linux Ubuntu 16.04</li>
-          <a href="https://www.digitalocean.com/" target="_blank">DigitalOcean Linux</a>
-          <li>Pip virtualenv</li>
-          <li>Flask Gunicorn nginx</li>
-          <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04"
-            target="_blank">Gunicorn</a>
-          <li>FilZilla SSH from Window to Linux on cloud</li>
-          <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04">FileZila SSH</a>
+          <li>And what not.....</li>
         </ul>
       </div>
     </div>
   </div>
 
+</div>
 
 
 
-  <!-- tmp section  -->
-  <div class="container">
-    <p>
-     
-    </p>
 
-  </div>
-  <!-- jumbo section  -->
+<!-- tmp section  -->
+<div class="container">
+  <p>
+
+  </p>
+
+</div>
+<!-- jumbo section  -->
 </div>
 {% endblock %}

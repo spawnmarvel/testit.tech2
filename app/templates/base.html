@@ -35,12 +35,34 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="/">Home</a>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('home.index') }}">Home
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/">/</a>
+                  </li>
+              <li>
+                <a href="#">Register</a>
+              </li>
+              <li>
+                <a href="#">Login</a>
+              </li>
+            </ul>
           </li>
-          <li>
-            <a href="about">About</a>
-          </li>
+          
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('home.about') }}">About
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="about">About v1</a>
+                </li>
+              </ul>
+            </li>
+
           <!-- note db  -->
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">App build
@@ -65,26 +87,26 @@
                 <a href="pybuilt">2 Built-in functions / Library</a>
               </li>
               <li>
-                  <a href="pyflow">4 Flow</a>
-                </li>
+                <a href="pyflow">4 Flow</a>
+              </li>
               <li>
-                  <a href="pydatast">5 Data Structures</a>
-                </li>
+                <a href="pydatast">5 Data Structures</a>
+              </li>
               <li>
-                  <a href="pymod">6 Modules</a>
-                </li>
+                <a href="pymod">6 Modules</a>
+              </li>
               <li>
-                  <a href="pyinout">7 Input / Output</a>
-                </li>
+                <a href="pyinout">7 Input / Output</a>
+              </li>
               <li>
-                  <a href="pyerrors">8 Errors / Exception</a>
-                </li>
+                <a href="pyerrors">8 Errors / Exception</a>
+              </li>
               <li>
                 <a href="pyoop">9 Object Oriented programming</a>
               </li>
               <li>
-                  <a href="pyinit">__init__</a>
-                </li>
+                <a href="pyinit">__init__</a>
+              </li>
               <li>
                 <a href="pyfunctional">Functional programming</a>
               </li>
@@ -177,6 +199,9 @@
                 <a href="http://exploreflask.com/en/latest/organizing.html" target="_blank">Flask organizing folders</a>
               </li>
               <li>
+                <a href="https://scotch.io/tutorials/build-a-crud-web-app-with-python-and-flask-part-one#prerequisites" target="_blank">Flask CRUD web app</a>
+              </li>
+              <li>
                 <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04"
                   target="_blank">Flask gunicorn nginx ubuntu 16.04</a>
               </li>
@@ -188,6 +213,9 @@
               </li>
               <li>
                 <a href="https://www.w3schools.com/bootstrap/bootstrap_pagination.asp" target="_blank">Bootstrap w3schools</a>
+              </li>
+              <li>
+                <a href="http://jinja.pocoo.org/docs/2.10/" target="_blank">Jinja2</a>
               </li>
               <li>
                 <a href="http://pythoncentral.io/introductory-tutorial-python-sqlalchemy/" target="_blank">SqlAlchemy</a>
@@ -214,6 +242,7 @@
               <li>
                 <a href="https://www.youtube.com/watch?v=kDRRtPO0YPA" target="_blank">Deploying Flask Apps to an Ubuntu Server</a>
               </li>
+
             </ul>
           </li>
 
@@ -229,9 +258,7 @@
               <li>
                 <a href="https://www.tutorialspoint.com/csharp/" target="_blank">C# tutorialspoint</a>
               </li>
-              <li>
-                <a href="https://www.tutorialspoint.com/wpf/index.htm" target="_blank">WPF tutorialspoint</a>
-              </li>
+
 
             </ul>
           </li>
@@ -259,29 +286,22 @@
     <footer class="footer">
       <br>
       <p>
-        <span style="color:rgb(180, 230, 19)">testit.tech</span> is powered by:</p>
+        <span style="color:rgb(29, 18, 179)"></span>testit.tech</span> is powered by:</p>
       <p>Nginx HTTP server and reverse proxy
-        <a href="https://www.nginx.com/resources/wiki/" target="_blank">
-          <span style="color:rgb(180, 230, 19)">Nginx</span>
-        </a>
+        <a class=".footer_a" href="https://www.nginx.com/resources/wiki/" target="_blank">
+          Nginx </a>
 
         . Gunicorn Python WSGI HTTP server for UNIX
-        <a href="http://gunicorn.org/" target="_blank">
-          <span style="color:rgb(180, 230, 19)">Gunicorn</span>
+        <a class=".footer_a" href="http://gunicorn.org/" target="_blank"> Gunicorn </a>
 
-        </a>
-
-        . Cloud computing, designed for developers
-        <a href="https://www.digitalocean.com/" target="_blank">
-          <span style="color:rgb(180, 230, 19)">DigitalOcean</span>
-
-        </a>
+        .Cloud computing, designed for developers
+        <a class=".footer_a" href="https://www.digitalocean.com/" target="_blank">
+          DigitalOcean </a>
 
         . Domain at doimainnameshop
-        <a href="https://domainname.shop/?currency=GBP&lang=en" target="_blank">
-          <span style="color:rgb(180, 230, 19)">doimainnameshop</span>
+        <a class=".footer_a" href="https://domainname.shop/?currency=GBP&lang=en" target="_blank">
+          doimainnameshop </a>
 
-        </a>
       </p>
       <p>&copy jekl 30.09.2017</p>
     </footer>
