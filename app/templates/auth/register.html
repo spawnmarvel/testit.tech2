@@ -1,0 +1,13 @@
+
+
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <p class="style_separator">Register for an account</p>
+  {{ wtf.quick_form(form) }}
+  
+</div>
+{% endblock %}

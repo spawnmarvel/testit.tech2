@@ -24,13 +24,13 @@ def about():
     logger.debug("about route")
     return render_template("home/about.html")
 
-@home.route("/note")
+@home.route("/dashboard")
 @login_required
-
-def note():
+def dashboard():
     """
     Render the note template on the / route
     """
+    return render_template("home/dashboard.html")
 
 
 

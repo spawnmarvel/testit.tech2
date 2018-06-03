@@ -3,6 +3,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
 # Migrations allow us to manage changes we make to the models, and propagate these changes in the databas
 from flask_migrate import Migrate
 
@@ -18,21 +19,28 @@ login_manager = LoginManager()
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name]) #object config
-    
     app.config.from_pyfile("config.py") # instance config
+
+    Bootstrap(app)
     db.init_app(app)
 
     login_manager.init_app(app)
     login_manager.login_message = "Not authorized"
-    login_manager.login_view = "home.index"
+    login_manager.login_view = "auth.login"
 
+    
     # migrate = Migrate(app, db)
     with app.app_context():
-        from app import models
+        from app import models as d 
+        d.init_user()
         db.create_all()
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+
     
 
     return app

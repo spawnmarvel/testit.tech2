@@ -43,12 +43,18 @@
                 <li>
                     <a href="/">/</a>
                   </li>
+                  {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+    {% else %}
               <li>
-                <a href="#">Register</a>
+                <a href="{{ url_for('auth.register') }}">Register</a>
               </li>
               <li>
-                <a href="#">Login</a>
+                <a href="{{ url_for('auth.login') }}">Login</a>
               </li>
+              {% endif %}
             </ul>
           </li>
           
