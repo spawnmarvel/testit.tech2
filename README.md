@@ -5,8 +5,17 @@ for documenting the stuff I try out. I.e Zabbix, Grafana, Octopus, etc.
 It also contains a blog section bulit with SQLite, tab->SQLite->Note Blog.
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+<br>
 create sqlite db:
 (web2) flask db init_
+<br>
+Example config:
+<br>
+# instance/config.py
+
+SECRET_KEY = "gnfwogwvowvgvgwo78794vawvvw"
+SQLALCHEMY_DATABASE_URI = "sqlite:///mydb.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 ### Prerequisites
 
 TBD

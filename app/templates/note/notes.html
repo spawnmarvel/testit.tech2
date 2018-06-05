@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block title %}About{% endblock %} {% block body %}
+
+<div class="jumbotron">
+  <h2>Notebook</h2>
+  <!-- form for get btn -->
+  <form action="/note" method="GET">
+    <input type="submit" value="Refresh" class="btn btn-primary btn pull-right" />
+    <br>
+    <h6>Result: {{ result }}</h6>
+  </form>
+  <!-- Collapse btn -->
+  <button type="button" class="btn btn-primary btn pull-right" data-toggle="collapse" data-target="#to_do_web">Add note</button>
+  <br>
+  <br>
+  
+  <div id="to_do_web" class="collapse">
+    <br>
+    <form action="/note" method="POST">
+      <div class="form-group">
+        <label>Note description:</label>
+        <textarea class="form-control" id="inputdefault" type="text" name="nt" placeholder="Some text about..."></textarea>
+        <br>
+        <!-- options -->
+        <label>Level:</label>
+        <div class="radio">
+          <label>
+            <input type="radio" checked="checked" name="options" value="High">High</label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="options" value="Medium">Medium</label>
+        </div>
+
+        <!--select tag -->
+        <div class="form-group">
+          <label for="sel1">Topic:</label>
+          <select class="form-control" name="selectvalue" id="sel1">
+            <option>Programming</option>
+            <option>Python</option>
+            <option>Csharp</option>
+            <option>SQL</option>
+            <option>Html</option>
+            <option>Linux</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <!-- options -->
+        <br>
+        <label>Url:</label>
+        <input class="form-control" id="inputdefault" type="text" name="url" placeholder="https://www.ba.no/" />
+        <br>
+        <br>
+        <!-- post btn -->
+        <input type="submit" name="action" value="Add" class="btn btn-primary" />
+
+      </div>
+    </form>
+    <!-- Collapse btn div -->
+  </div>
+  <!-- note db result  -->
+
+  {% for note in note_data %}
+  <!-- for each note in db, make a jumbotron div with form-->
+  <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
+    <h2>{{ note[2] }}:</h2>
+    <p class="break_them">{{ note[1] }}</p>
+    <br>
+    <br>
+     <!-- <a href="{{ ''.join(['', note[3]]) }}" target="_blank"> {{ note[3] }}</a> -->
+    <br>
+    <span class="glyphicon glyphicon-time"> {{ note[4] }}</span>
+    
+    <br>
+    <br>
+    <span class="label label-success">{{ note[2] }}</span>
+    <form action="/note" method="POST">
+      <br>
+      <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
+      <br>
+      <input class="form-control" id="disabledInput" type="text" name="delid" value="{{ note[0] }}" readonly/>
+      <br>
+      <input class="form-control" id="inputdefault" type="text" name="delpass" placeholder="Secret Key" />
+      <h6>Key result: {{ secret }}</h6>
+      <br>
+    </form>
+  </div>
+
+
+
+  {% endfor %}
+
+
+
+  <!-- make a div with p, h1 not table  -->
+
+</div>
+
+
+{% endblock %}

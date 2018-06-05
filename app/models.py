@@ -61,9 +61,9 @@ def init_user():
             conn.commit()
             row = cur.fetchone()
             if row == None:
-                msg = "Table exists user"
+                msg = " - - > Table exists user"
             else:
-                msg = "Table created user"
+                msg = " - - - > Table created user"
     except sqlite3.OperationalError as e:
         msg = str(e)
     return msg

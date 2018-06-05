@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Note{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h2>Note DB</h2>
+  <p>result: {{ result }}</p>
+    <!-- form -->
+  <form action = "/addnote" method = "GET">
+    <input type = "submit" value = "Get" class="btn btn-primary" />
+</form>
+  <form action = "/note" method = "POST">
+    <div class="form-group">
+        <p class="lead">Note:</p>
+        <input class="form-control" id="inputdefault" type="text" name = "nt" />
+        <br>
+         <!-- options -->
+        <div class="radio">
+          <label><input type="radio" checked="checked" name="options" value="Programming">Programming</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="options" value="Sql">Sql</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="options" value="html">Html</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="options" value="linux">Linux</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="options" value="other">Other</label>
+          </div>
+         <!-- options -->
+        <br>
+        <p class="lead">Url:</p>
+        <input class="form-control" id="inputdefault" type="text" name = "url" />
+        <br>
+        <br>
+         <!-- post btn -->
+        <input type = "submit" name ="action" value = "Post" class="btn btn-primary" />
+        <br>
+        <p>Delete id:</p>
+        <p class="lead">Id:</p>
+        <input class="form-control" id="inputdefault" type="text" name = "delId" />
+        <br>
+      <!-- delete btn -->
+      <input type = "submit" name ="action" value = "Delete" class="btn btn-primary" />
+    </div>
+  </form>
+       <!-- make a div with p, h1 not table  -->
+    <p>max id test: {{ m_id }}</p>
+    <p>type: {{ ty }}</p>
+
+</div>
+{% endblock %}
+

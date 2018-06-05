@@ -19,7 +19,7 @@ login_manager = LoginManager()
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name]) #object config
-    app.config.from_pyfile("config.py") # instance config
+    app.config.from_pyfile("config.conf") # instance config
 
     Bootstrap(app)
     db.init_app(app)
@@ -35,8 +35,7 @@ def create_app(config_name):
         print(d.init_user())
         db.create_all()
     from app.logs import db_logger as db_log
-    db_log.init_logger()
-    # db_log.db_logit("test", "test")
+    print(db_log.init_logger())
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
@@ -50,6 +49,8 @@ def create_app(config_name):
     
 
     return app
+
+    
 
 
 

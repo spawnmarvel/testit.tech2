@@ -6,6 +6,8 @@ conn = None
 sql_create_logger = "create table if not exists logger (id INTEGER PRIMARY KEY autoincrement, logger_msg char(60) NOT NULL, logger_data char(60) NOT NULL, logger_time NUMERIC)"
 sql_insert_logger = "insert into logger (logger_msg, logger_data, logger_time) values (?, ?, ?)"
 sql_select_all = "select * from logger order by id desc"
+
+
 def init_logger():
     msg = None
     global conn
@@ -19,9 +21,9 @@ def init_logger():
             conn.commit()
             row = cur.fetchone()
             if row == None:
-                msg = "Table exists logger"
+                msg = " - - > Table exists logger"
             else:
-                msg = "Table created logger"
+                msg = " - - > Table created logger"
     except sqlite3.OperationalError as e:
         msg = str(e)
     return msg
@@ -60,3 +62,9 @@ def db_logit(logger_msg, logger_data):
         msg = e
     return msg
 
+def db_insert_note():
+    pass
+def db_delete_note():
+    pass
+def db_all_note():
+    pass
