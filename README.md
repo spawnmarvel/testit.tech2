@@ -11,10 +11,12 @@ create sqlite db:
 <br>
 Example config:
 <br>
-# instance/config.py
-
+instance/config.conf
+<br>
 SECRET_KEY = "gnfwogwvowvgvgwo78794vawvvw"
+<br>
 SQLALCHEMY_DATABASE_URI = "sqlite:///mydb.db"
+<br>
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 ### Prerequisites
 
