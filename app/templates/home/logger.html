@@ -1,14 +1,14 @@
 {% import "bootstrap/utils.html" as utils %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% extends "base.html" %}
-{% block title %}Register{% endblock %}
+{% block title %}Logger{% endblock %}
 {% block body %}
 <div class="jumbotron">
-  <p class="style_separator">Dashboard:</p>
+  <p class="style_separator">Dashboard</p>
+    {% for r in rv %}
+    <p class="style_separator"> {{ r }}</p>
+    {% endfor %}
   
-  <br>
-  <a href="loggerDash">LoggerDash</a>
-  <br>
-  <a href="note">Note</a>
+ 
 </div>
 {% endblock %}

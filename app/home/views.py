@@ -31,6 +31,17 @@ def dashboard():
     return render_template("home/dashboard.html")
 
 
+@home.route("/loggerDash")
+@login_required
+def loggerDash():
+    """
+    Render the note template on the / route
+    """
+    rv = db_logger.db_logger_all()
+    db_logger.db_logit("route loggerDash", "user entry")
+    return render_template("home/logger.html", rv=rv)
+
+
 
 
 

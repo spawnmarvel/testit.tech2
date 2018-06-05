@@ -5,7 +5,7 @@ conn = None
 
 sql_create_logger = "create table if not exists logger (id INTEGER PRIMARY KEY autoincrement, logger_msg char(60) NOT NULL, logger_data char(60) NOT NULL, logger_time NUMERIC)"
 sql_insert_logger = "insert into logger (logger_msg, logger_data, logger_time) values (?, ?, ?)"
-
+sql_select_all = "select * from logger order by id desc"
 def init_logger():
     msg = None
     global conn
@@ -26,6 +26,22 @@ def init_logger():
         msg = str(e)
     return msg
 
+def db_logger_all():
+    """___"""
+    msg = ""
+    global CONN
+    try:
+        conn = sqlite3.connect("web2.db")
+        with conn:
+            cur = conn.cursor()
+            global sql_select_all
+            cur.execute(sql_select_all)
+            row = cur.fetchall()
+            msg = row
+    except sqlite3.OperationalError as e:
+        msg = e
+    return msg
+
 
 def db_logit(logger_msg, logger_data):
     """ doc """
@@ -41,7 +57,6 @@ def db_logit(logger_msg, logger_data):
             conn.commit()
             msg = "added row"
     except sqlite3.OperationalError as e:
-        print(e)
-        # conn.rollback()
+        msg = e
     return msg
 
