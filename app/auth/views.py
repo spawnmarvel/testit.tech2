@@ -6,6 +6,8 @@ from app.auth.forms import LoginForm, RegistrationForm
 from .. import db
 from ..models import User
 
+from app.logs import db_logger
+
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     """
@@ -47,6 +49,7 @@ def login():
             login_user(user)
 
             # redirect to the dashboard page after login
+            db_logger.db_logit("route login", format(user))
             return redirect(url_for('home.dashboard'))
 
         # when login details are incorrect

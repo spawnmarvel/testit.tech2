@@ -4,6 +4,10 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 from ..models import User
 
+#For the auth blueprint, Creating the registration and login forms.
+# Use Flask-WTF, which will allow us to create forms that are secure (thanks to CSRF protection and reCAPTCHA support).
+
+
 class RegistrationForm(FlaskForm):
     """
     Form for users to create new account

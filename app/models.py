@@ -46,6 +46,8 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# what was wrong with db.create_all() in __init__,py??
+# have to create all tables with sqlalchemy,  but need to create the tables now with plain sql
 def init_user():
     msg = None
     global conn
@@ -65,8 +67,4 @@ def init_user():
     except sqlite3.OperationalError as e:
         msg = str(e)
     return msg
-    
-
-if __name__ == "__main__":
-    init_user()
 

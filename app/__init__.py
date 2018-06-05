@@ -32,14 +32,20 @@ def create_app(config_name):
     # migrate = Migrate(app, db)
     with app.app_context():
         from app import models as d 
-        d.init_user()
+        print(d.init_user())
         db.create_all()
+    from app.logs import db_logger as db_log
+    db_log.init_logger()
+    # db_log.db_logit("test", "test")
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+
+    from .note import note as note_blueprint
+    app.register_blueprint(note_blueprint)
 
     
 

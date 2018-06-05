@@ -40,14 +40,21 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li>
-                    <a href="/">/</a>
-                  </li>
-                  {% if current_user.is_authenticated %}
-      <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
-      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-      <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
-    {% else %}
+              <li>
+                <a href="/">/</a>
+              </li>
+              {% if current_user.is_authenticated %}
+              <li>
+                <a href="{{ url_for('home.dashboard') }}">Dashboard</a>
+              </li>
+              <li>
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+              </li>
+              <li>
+                <a>
+                  <i class="fa fa-user"></i> Hi, {{ current_user.username }}!</a>
+              </li>
+              {% else %}
               <li>
                 <a href="{{ url_for('auth.register') }}">Register</a>
               </li>
@@ -57,17 +64,17 @@
               {% endif %}
             </ul>
           </li>
-          
+
           <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('home.about') }}">About
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="about">About v1</a>
-                </li>
-              </ul>
-            </li>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url_for('home.about') }}">About
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="about">About v1</a>
+              </li>
+            </ul>
+          </li>
 
           <!-- note db  -->
           <li class="dropdown">
