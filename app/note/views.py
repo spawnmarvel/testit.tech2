@@ -12,8 +12,18 @@ from app.db import db_handler
 from . import note
 
 
+@note.route("/noteview")
+def note_view():
+    note_data = db_handler.db_all_note()
+    result = "Null"
+    secret = "Null"
+    if request.method == 'POST':
+        return render_template("note/notes_view.html", note_data=note_data, result=result, secret=secret)
+    # get
+    return render_template("note/notes_view.html", note_data=note_data, result=result, secret=secret)
+    
 
-@note.route("/note", methods=['GET', 'POST'])
+@note.route("/noteadmin", methods=['GET', 'POST'])
 @login_required
 def notes_db():
     note_data = db_handler.db_all_note()
