@@ -7,7 +7,7 @@ import logging
 from flask import render_template, request, redirect, url_for, session, flash
 from flask_login import login_required
 # internal
-from app.logs import db_logger
+from app.db import db_handler
 
 from . import note
 
@@ -16,7 +16,7 @@ from . import note
 @note.route("/note", methods=['GET', 'POST'])
 @login_required
 def notes_db():
-    note_data = " db logger note all" #db_logger.db_all_note()
+    note_data = db_handler.db_all_note()
     secret = "use same as password, or make a secret word"
     current_time = datetime.datetime.now()
     if request.method == 'POST':
@@ -30,7 +30,7 @@ def notes_db():
             if len(note) < 5 or len(topic_url) < 6:
                 result = "Note must be > 5 and url must be > 6"
             else:
-                db_logger.db_insert_note()
+                db_handler.db_insert_note()
                 # result = sqlalchemy_statments.insert(note, topic, topic_url)
                 # result += " topic: " + str(topic)
         elif request.form["action"] == "DeleteNote":
@@ -42,7 +42,7 @@ def notes_db():
                 if tmp_del_pa_.lower() == del_pa_:
                     notes_id = request.form["delid"]
                     # result = sqlalchemy_statments.delete(notes_id)
-                    db_logger.db_delete_note()
+                    db_handler.db_delete_note()
 
                     num_1 = random.randint(0, 333)
                     num_2 = random.randint(0, 99)

@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 from ..models import User
 
-#For the auth blueprint, Creating the registration and login forms.
-# Use Flask-WTF, which will allow us to create forms that are secure (thanks to CSRF protection and reCAPTCHA support).
+# http://flask-wtf.readthedocs.io/en/stable/csrf.html
+# Any view using FlaskForm to process the request is already getting CSRF protection
 
 
 class RegistrationForm(FlaskForm):

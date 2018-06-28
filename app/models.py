@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 from app import db, login_manager
 
-sql_create_users = "create table if not exists user(id INTEGER PRIMARY KEY autoincrement, email char(60) NOT NULL, username char(60) NOT NULL,  password_hash char(60) NOT NULL)"
+sql_create_users = "create table if not exists user(id INTEGER PRIMARY KEY autoincrement, email char(60) NOT NULL, username char(60) NOT NULL,  password_hash char(60) NOT NULL, is_admin boolean NOT NULL)"
 
 class User(UserMixin, db.Model):
 
@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(60), index=True, unique=True)
     username = db.Column(db.String(60), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    is_admin = db.Column(db.Boolean, default=False)
 
     
     @property
@@ -67,4 +68,7 @@ def init_user():
     except sqlite3.OperationalError as e:
         msg = str(e)
     return msg
+
+def make_admin():
+    pass
 

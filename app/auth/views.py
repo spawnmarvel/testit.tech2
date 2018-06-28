@@ -67,6 +67,7 @@ def logout():
     Log an employee out through the logout link
     """
     logout_user()
+    db_logger.db_logit("route logout", "user exit")
     flash('You have successfully been logged out.')
 
     # redirect to the login page

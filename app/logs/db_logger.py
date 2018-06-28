@@ -2,6 +2,7 @@ import sqlite3
 import datetime
 
 conn = None
+database = "app/web2.db"
 
 sql_create_logger = "create table if not exists logger (id INTEGER PRIMARY KEY autoincrement, logger_msg char(60) NOT NULL, logger_data char(60) NOT NULL, logger_time NUMERIC)"
 sql_insert_logger = "insert into logger (logger_msg, logger_data, logger_time) values (?, ?, ?)"
@@ -13,7 +14,7 @@ def init_logger():
     global conn
     try:
        
-        conn = sqlite3.connect("web2.db")
+        conn = sqlite3.connect(database)
         with conn:
             cur = conn.cursor()
             global sql_create_logger
@@ -33,7 +34,7 @@ def db_logger_all():
     msg = ""
     global CONN
     try:
-        conn = sqlite3.connect("web2.db")
+        conn = sqlite3.connect(database)
         with conn:
             cur = conn.cursor()
             global sql_select_all
@@ -50,7 +51,7 @@ def db_logit(logger_msg, logger_data):
     msg = None
     global conn
     try:
-        conn = sqlite3.connect("web2.db")
+        conn = sqlite3.connect(database)
         with conn:
             cur = conn.cursor()
             timeNow = datetime.datetime.now()
