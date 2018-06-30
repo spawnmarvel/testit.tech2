@@ -1,6 +1,7 @@
 # run.py
 
 import os
+from flask import render_template
 
 from app import create_app
 
@@ -11,7 +12,7 @@ app = create_app(dv)
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return "error/400.html "
+    return render_template("/error/400.html")
 
 
 

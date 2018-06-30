@@ -29,7 +29,7 @@ def init_holder():
         msg = str(e)
     return msg
 
-def db_insert_note():
+def db_insert_note(note, topic, url):
     msg = None
     global conn
     try:
@@ -38,7 +38,7 @@ def db_insert_note():
             cur = conn.cursor()
             t = datetime.datetime.now()
             global sql_insert_holder
-            cur.execute(sql_insert_holder, ("Test note", "sql", "www.bla.com", t))
+            cur.execute(sql_insert_holder, (note, topic, url, t))
             conn.commit()
             msg = "added row"
     except Exception as e:
@@ -63,4 +63,4 @@ def db_all_note():
         msg = e
     return msg
 
-    
+

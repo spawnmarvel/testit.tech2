@@ -31,18 +31,19 @@ def notes_db():
     current_time = datetime.datetime.now()
     if request.method == 'POST':
         if request.form["action"] == "Add":
+            print("add admin")
             #db logger add
             note = request.form["nt"]
-            # level_ = request.form["options"]
-            topic_url = request.form["url"]
             # drop = request.form["drop_option"]
             topic = request.form["selectvalue"]
+            # level_ = request.form["options"]
+            topic_url = request.form["url"]
             if len(note) < 5 or len(topic_url) < 6:
                 result = "Note must be > 5 and url must be > 6"
             else:
-                db_handler.db_insert_note()
-                # result = sqlalchemy_statments.insert(note, topic, topic_url)
-                # result += " topic: " + str(topic)
+                result = db_handler.db_insert_note(note, topic, topic_url)
+               
+                
         elif request.form["action"] == "DeleteNote":
                 # logger.info("delete note")
                 del_pa_ = "master"
