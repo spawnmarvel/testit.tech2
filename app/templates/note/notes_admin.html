@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block title %}Note{% endblock %} {% block body %}
+{% extends "base.html" %} {% block title %}Note Admin{% endblock %} {% block body %}
 
 <div class="jumbotron">
-  <h2>Notebook</h2>
+  <h2>Notebook admin</h2>
   <!-- form for get btn -->
   <form action="/noteadmin" method="GET">
     <input type="submit" value="Refresh" class="btn btn-primary btn pull-right" />
@@ -73,14 +73,11 @@
     <br>
     <br>
     <span class="label label-success">{{ note[2] }}</span>
-    <form action="/note" method="POST">
+    <form action="/noteadmin" method="POST">
       <br>
       <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
       <br>
       <input class="form-control" id="disabledInput" type="text" name="delid" value="{{ note[0] }}" readonly/>
-      <br>
-      <input class="form-control" id="inputdefault" type="text" name="delpass" placeholder="Secret Key" />
-      <h6>Key result: {{ secret }}</h6>
       <br>
     </form>
   </div>

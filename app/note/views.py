@@ -27,7 +27,7 @@ def note_view():
 @login_required
 def notes_db():
     note_data = db_handler.db_all_note()
-    secret = "use same as password, or make a secret word"
+    result = "Get all"
     current_time = datetime.datetime.now()
     if request.method == 'POST':
         if request.form["action"] == "Add":
@@ -45,33 +45,17 @@ def notes_db():
                
                 
         elif request.form["action"] == "DeleteNote":
-                # logger.info("delete note")
-                del_pa_ = "master"
-                tmp_del_pa_ = request.form["delpass"]
-                print(format(tmp_del_pa_))
-                print(format(del_pa_))
-                if tmp_del_pa_.lower() == del_pa_:
-                    notes_id = request.form["delid"]
-                    # result = sqlalchemy_statments.delete(notes_id)
-                    db_handler.db_delete_note()
-
-                    num_1 = random.randint(0, 333)
-                    num_2 = random.randint(0, 99)
-                    letters_1 = random.choice(string.ascii_letters)
-                    letters_2 = random.choice(string.ascii_letters)
-                    result += "  KEY" +  letters_1 + str(num_1) + letters_2 + str(num_2)
-                    secret = " Success"
-                else:
-                    result = "Secret key is wrong"
-                    secret = "Secret key is wrong"
+                notes_id = request.form["delid"]
+                result = db_handler.db_delete_note(notes_id)
+                
         else:
             pass
     else:
         result = "GET: " + str(current_time)
            
-        return render_template("note/notes.html", note_data=note_data, result=result, secret=secret)
+        return render_template("note/notes_admin.html", note_data=note_data, result=result)
 
-    return render_template("note/notes.html", note_data=note_data, result=result, secret=secret)
+    return render_template("note/notes_admin.html", note_data=note_data, result=result)
 
 
 

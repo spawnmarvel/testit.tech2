@@ -7,6 +7,7 @@ database = "app/web2.db"
 sql_create_holder = "create table if not exists holder(id INTEGER PRIMARY KEY autoincrement, note TEXT, topic TEXT, url TEXT, published NUMERIC)"
 sql_insert_holder = "insert into holder (note, topic, url, published) values (?, ?, ?, ?)"
 sql_get_all = "select * from holder order by id desc"
+sql_delete_id = "delete from holder where id = ?"
 
 
 def init_holder():
@@ -46,8 +47,21 @@ def db_insert_note(note, topic, url):
     return msg
 
 
-def db_delete_note():
-    pass
+def db_delete_note(note_id):
+    msg = None
+    global conn
+    try:
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+            global sql_delete_id
+            cur.execute(sql_delete_id, (note_id,))
+            conn.commit()
+            msg = "deleted " + format(note_id)
+    except Exception as e:
+        msg = e
+    return msg
+
 def db_all_note():
     msg = None
     global conn
