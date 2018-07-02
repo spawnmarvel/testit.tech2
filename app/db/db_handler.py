@@ -8,6 +8,7 @@ sql_create_holder = "create table if not exists holder(id INTEGER PRIMARY KEY au
 sql_insert_holder = "insert into holder (note, topic, url, published) values (?, ?, ?, ?)"
 sql_get_all = "select * from holder order by id desc"
 sql_delete_id = "delete from holder where id = ?"
+sql_get_topic = "select * from holder where topic = ? order by id asc"
 
 
 def init_holder():
@@ -71,6 +72,22 @@ def db_all_note():
             cur = conn.cursor()
             global sql_get_all
             cur.execute(sql_get_all)
+            row = cur.fetchall()
+            msg = row
+    except Exception as e:
+        msg = e
+    return msg
+
+def db_get_by_topic(topic):
+    msg = None
+    global conn
+    try:
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+            global sql_get_topic
+            cur.execute(sql_get_topic, (topic,))
+            conn.commit()
             row = cur.fetchall()
             msg = row
     except Exception as e:

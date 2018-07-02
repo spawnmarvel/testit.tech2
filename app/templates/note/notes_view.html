@@ -1,13 +1,40 @@
 {% extends "base.html" %} {% block title %}Note View{% endblock %} {% block body %}
 
 <div class="jumbotron">
-  <h2>Notebook view</h2>
+  <h4>Notebook view</h4>
   <!-- form for get btn -->
   <form action="/noteview" method="GET">
-    <input type="submit" value="Refresh" class="btn btn-primary btn pull-right" />
+    <input type="submit" value="Get All" class="btn btn-primary btn pull-right" />
     <br>
     <h6>Result: {{ result }}</h6>
   </form>
+
+  <br>
+  <form action="/noteview" method="POST">
+    <div class="form-group">
+      <!-- topic-->
+       <!--select tag -->
+       <div class="form-group">
+          <label for="sel1">Select by topic, order by asc:</label>
+          <select class="form-control" name="selectvaluetopic" id="selectedValue">
+            <option>Python</option>
+            <option>SQL</option>
+            <option>NoSql</option>
+            <option>MapReduce</option>
+            <option>Hadoop / Hive</option>
+            <option>Programming in general</option>
+            <option>Html</option>
+            <option>Linux</option>
+            <option>Csharp</option>
+            <option>Other</option>
+          </select>
+        </div>
+        </div>
+         <!-- post btn -->
+         <input type="submit" name="action" value="GetTopic" class="btn btn-primary" />
+         <br>
+      </form>
+      <br>
   
 
   <!-- note db result  -->

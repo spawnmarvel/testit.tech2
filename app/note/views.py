@@ -12,15 +12,19 @@ from app.db import db_handler
 from . import note
 
 
-@note.route("/noteview")
+@note.route("/noteview" , methods=['GET', 'POST'])
 def note_view():
     note_data = db_handler.db_all_note()
     result = "Null"
-    secret = "Null"
     if request.method == 'POST':
-        return render_template("note/notes_view.html", note_data=note_data, result=result, secret=secret)
+        if request.form["action"] == "GetTopic":
+            topic = request.form["selectvaluetopic"]
+            topic_result = db_handler.db_get_by_topic(topic)
+            if len(topic_result) < 2:
+                result = "No data saved for topic: " + format(topic)
+            return render_template("note/notes_view.html", note_data=topic_result, result=result)
     # get
-    return render_template("note/notes_view.html", note_data=note_data, result=result, secret=secret)
+    return render_template("note/notes_view.html", note_data=note_data, result=result)
     
 
 @note.route("/noteadmin", methods=['GET', 'POST'])
@@ -35,7 +39,7 @@ def notes_db():
             #db logger add
             note = request.form["nt"]
             # drop = request.form["drop_option"]
-            topic = request.form["selectvalue"]
+            topic = request.form["selectvalueadd"]
             # level_ = request.form["options"]
             topic_url = request.form["url"]
             if len(note) < 5 or len(topic_url) < 6:

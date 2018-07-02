@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Note Admin{% endblock %} {% block body %}
 
 <div class="jumbotron">
-  <h2>Notebook admin</h2>
+  <h4>Notebook admin</h4>
   <!-- form for get btn -->
   <form action="/noteadmin" method="GET">
     <input type="submit" value="Refresh" class="btn btn-primary btn pull-right" />
@@ -9,7 +9,7 @@
     <h6>Result: {{ result }}</h6>
   </form>
   <!-- Collapse btn -->
-  <button type="button" class="btn btn-primary btn pull-right" data-toggle="collapse" data-target="#to_do_web">Add note</button>
+  <button type="button" class="btn btn-primary btn pull-right" data-toggle="collapse" data-target="#to_do_web">New note</button>
   <br>
   <br>
   
@@ -17,11 +17,29 @@
     <br>
     <form action="/noteadmin" method="POST">
       <div class="form-group">
-        <label>Note description:</label>
+        <!-- topic-->
+         <!--select tag -->
+         <div class="form-group">
+            <label for="sel1">Topic:</label>
+            <select class="form-control" name="selectvalueadd" id="sel1">
+              <option>Python</option>
+              <option>SQL</option>
+              <option>NoSql</option>
+              <option>MapReduce</option>
+              <option>Hadoop / Hive</option>
+              <option>Programming in general</option>
+              <option>Html</option>
+              <option>Linux</option>
+              <option>Csharp</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <!--topic end-->
+        <label>Note text:</label>
         <textarea class="form-control" id="inputdefault" type="text" name="nt" placeholder="Some text about..."></textarea>
         <br>
         <!-- options -->
-        <label>Level:</label>
+        <label>Level of importance:</label>
         <div class="radio">
           <label>
             <input type="radio" checked="checked" name="options" value="High">High</label>
@@ -30,21 +48,7 @@
           <label>
             <input type="radio" name="options" value="Medium">Medium</label>
         </div>
-
-        <!--select tag -->
-        <div class="form-group">
-          <label for="sel1">Topic:</label>
-          <select class="form-control" name="selectvalue" id="sel1">
-            <option>Programming</option>
-            <option>Python</option>
-            <option>Csharp</option>
-            <option>SQL</option>
-            <option>Html</option>
-            <option>Linux</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <!-- options -->
+        <!-- options end -->
         <br>
         <label>Url:</label>
         <input class="form-control" id="inputdefault" type="text" name="url" placeholder="https://www.ba.no/" />

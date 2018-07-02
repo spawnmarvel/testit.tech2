@@ -35,9 +35,9 @@ def create_app(config_name):
         print(d.init_user())
         db.create_all()
         from app.db import db_handler as dbh
-        print(dbh.init_holder())
+        # print(dbh.init_holder())
         # print(dbh.db_insert_note())
-        print(format(dbh.db_all_note()))
+        # print(format(dbh.db_all_note()))
     from app.logs import db_logger as db_log
     print(db_log.init_logger())
 
