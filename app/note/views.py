@@ -14,16 +14,24 @@ from . import note
 
 @note.route("/noteview" , methods=['GET', 'POST'])
 def note_view():
-    note_data = db_handler.db_all_note()
+    note_data = "" # db_handler.db_all_note()
     result = "Null"
     if request.method == 'POST':
+        # get by topic
         if request.form["action"] == "GetTopic":
             topic = request.form["selectvaluetopic"]
             topic_result = db_handler.db_get_by_topic(topic)
             if len(topic_result) < 2:
                 result = "No data saved for topic: " + format(topic)
             return render_template("note/notes_view.html", note_data=topic_result, result=result)
-    # get
+        # get all
+        elif request.form["action"] == "GetAll":
+            note_data = db_handler.db_all_note()
+            return render_template("note/notes_view.html", note_data=note_data, result=result)
+        else:
+            pass
+
+    # get plain
     return render_template("note/notes_view.html", note_data=note_data, result=result)
     
 

@@ -3,8 +3,8 @@
 <div class="jumbotron">
   <h4>Notebook view</h4>
   <!-- form for get btn -->
-  <form action="/noteview" method="GET">
-    <input type="submit" value="Get All" class="btn btn-primary btn pull-right" />
+  <form action="/noteview" method="POST">
+    <input type="submit" name="action" value="GetAll" class="btn btn-primary btn pull-right" />
     <br>
     <h6>Result: {{ result }}</h6>
   </form>
