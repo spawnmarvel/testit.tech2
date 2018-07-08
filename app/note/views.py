@@ -5,9 +5,10 @@ import datetime
 import logging
 
 from flask import render_template, request, redirect, url_for, session, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 # internal
-from app.db import db_handler
+from app.db_note import db_handler
+from app.logs import db_logger
 
 from . import note
 
@@ -48,7 +49,6 @@ def notes_db():
     current_time = datetime.datetime.now()
     if request.method == 'POST':
         if request.form["action"] == "Add":
-            print("add admin")
             #db logger add
             note = request.form["nt"]
             # drop = request.form["drop_option"]
@@ -59,6 +59,7 @@ def notes_db():
                 result = "Note must be > 5 and url must be > 6"
             else:
                 result = db_handler.db_insert_note(note, topic, topic_url)
+                db_logger.db_logit("route noteadmin", "note added")
                
                 
         elif request.form["action"] == "DeleteNote":

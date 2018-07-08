@@ -3,8 +3,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 from app import db, login_manager
 
-sql_create_users = "create table if not exists user(id INTEGER PRIMARY KEY autoincrement, email char(60) NOT NULL, username char(60) NOT NULL,  password_hash char(60) NOT NULL, is_admin boolean NOT NULL)"
+database = "app/web2.db"
 
+sql_create_users = "create table if not exists user(id INTEGER PRIMARY KEY autoincrement, email char(60) NOT NULL, username char(60) NOT NULL,  password_hash char(60) NOT NULL, is_admin boolean NOT NULL)"
+sql_make_admin = "update user set is_admin = 1 where username = ?"
 class User(UserMixin, db.Model):
 
     # Ensures table will be named in plural and not in singular
@@ -54,7 +56,7 @@ def init_user():
     global conn
     try:
        
-        conn = sqlite3.connect("web2.db")
+        conn = sqlite3.connect(database)
         with conn:
             cur = conn.cursor()
             global sql_create_users
@@ -69,6 +71,39 @@ def init_user():
         msg = str(e)
     return msg
 
-def make_admin():
-    pass
+def make_admin(u_name):
+    msg = None
+    global conn
+    try:
+       
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+            global sql_make_admin
+            cur.execute(sql_make_admin, (u_name,))
+            conn.commit()
+            row = cur.fetchone()
+            if row == None:
+                msg = " - - > Already admin"
+            else:
+                msg = " - - - > Made admin"
+    except sqlite3.OperationalError as e:
+        msg = str(e)
+    return msg
+
+def get_user():
+    msg = None
+    global conn
+    try:
+       
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+           
+            cur.execute("select * from user")
+            row = cur.fetchone()
+            msg = row
+    except sqlite3.OperationalError as e:
+        msg = str(e)
+    return msg
 
