@@ -9,6 +9,7 @@ sql_insert_holder = "insert into holder (note, topic, url, published) values (?,
 sql_get_all = "select * from holder order by id desc"
 sql_delete_id = "delete from holder where id = ?"
 sql_get_topic = "select * from holder where topic = ? order by id asc"
+sql_user_by_name = "select * from user where username = ?"
 
 
 def init_holder():
@@ -92,6 +93,23 @@ def db_get_by_topic(topic):
             msg = row
     except Exception as e:
         msg = e
+    return msg
+
+def get_user_by_name(u_name):
+    msg = None
+    global conn
+    try:
+       
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+            global sql_user_by_name
+           
+            cur.execute(sql_user_by_name, (u_name,))
+            row = cur.fetchall()
+            msg = row
+    except sqlite3.OperationalError as e:
+        msg = str(e)
     return msg
 
 

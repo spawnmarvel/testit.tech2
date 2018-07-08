@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 
 from . import home
 from app.logs import db_logger
+from app.db_note import db_handler
 
 @home.route("/")
 def index():

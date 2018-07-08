@@ -7,6 +7,7 @@ database = "app/web2.db"
 
 sql_create_users = "create table if not exists user(id INTEGER PRIMARY KEY autoincrement, email char(60) NOT NULL, username char(60) NOT NULL,  password_hash char(60) NOT NULL, is_admin boolean NOT NULL)"
 sql_make_admin = "update user set is_admin = 1 where username = ?"
+
 class User(UserMixin, db.Model):
 
     # Ensures table will be named in plural and not in singular
@@ -101,9 +102,11 @@ def get_user():
             cur = conn.cursor()
            
             cur.execute("select * from user")
-            row = cur.fetchone()
+            row = cur.fetchall()
             msg = row
     except sqlite3.OperationalError as e:
         msg = str(e)
     return msg
+
+
 
