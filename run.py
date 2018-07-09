@@ -17,5 +17,7 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
+    # for linux
+    # app.run(host='0.0.0.0')
     app.run(port=5100)
 	# debug should come from config
