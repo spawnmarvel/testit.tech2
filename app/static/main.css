@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(201, 201, 174)
+    background-color:rgb(250, 250, 245)
 }
 
 
@@ -32,6 +32,10 @@ body {
 .darker {
     border-color: #ccc;
     background-color: #ddd;
+}
+.footer {
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .footer_a {

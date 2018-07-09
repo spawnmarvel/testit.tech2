@@ -47,6 +47,8 @@ def notes_db():
     note_data = db_handler.db_all_note()
     result = "Get all"
     current_time = datetime.datetime.now()
+    if not current_user.is_admin:
+        return redirect(url_for('home.index_view'))
     if request.method == 'POST':
         if request.form["action"] == "Add":
             #db logger add
