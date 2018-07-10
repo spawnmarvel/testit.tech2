@@ -2,12 +2,13 @@
 <div class="jumbotron">
   
     <!-- information-->
-    <p class="style_separator">Welcome</p>
+   
      
      
     {% if current_user.is_authenticated %}
       <p class="style_separator">Hi, {{ current_user.username }}, we are sorry but you can only browse this site for now.</p>
       <p class="style_separator">In the future you will be able to do more, thanks for register.</p>
+      <p class="style_separator">Dashboard and Note admin is restricted.</p>
     
              
     {% else %}

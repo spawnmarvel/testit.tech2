@@ -53,7 +53,10 @@ def create_app(config_name):
     from .note import note as note_blueprint
     app.register_blueprint(note_blueprint)
 
-    
+    from .tech import tech as tech_blueprint
+    app.register_blueprint(tech_blueprint)
+
+
 
     return app
 
