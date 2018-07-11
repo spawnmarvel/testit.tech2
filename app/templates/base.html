@@ -9,6 +9,8 @@
   <!--This is for nav bad mobile and dropdown menu -->
   <script src="static/js/jquery-3.2.1.min.js"></script>
   <script src="static/js/bootstrap.min.js"></script>
+  <!-- Load font awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -216,10 +218,29 @@
     <!-- div container fluid  -->
   </nav>
   <!-- base section end  -->
+
+  <!--sticky social-->
+  <div class="icon-bar">
+    <a href="https://twitter.com/espenkleivane" target="_blank" class="twitter">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <a href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQGPvRCY2jKAFQAAAWSKryM4OAEEXxge1AKAViy7ZBYJZtB14D0aNyDWqWdmZ60uaAN19ERoU-Dk6idTvtdr6pQZ2QOsQs0L01JjSLggFZgxIKi1cTR3VSQ93bg1_Oytw2cJy3M=&originalReferer=http://127.0.0.1:5100/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fespen-kleivane-7a4a8b52%2F"
+      target="_blank" class="linkedin">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  </div>
+
+
+  <!--sticky social-->
+  <!--base template with jinja2-->
   <div class="container">
+    <!-- container is used at base for all htmls files that inherits it, they start with jumbotron-->
+    <!-- So it is a container, with a jumbotron inside-->
     <div class="header clearfix">
-      <p>Base template with Jinja2</p>
+
     </div>
+    <!--base template with jinja2-->
+
     {% block body %} {% endblock %}
     <footer class="footer">
       <br>
