@@ -70,6 +70,10 @@ For the versions available, see the [tags on this repository](https://github.com
 * Tab->Links used (all the most important stuff for building this site)
 * Code that was used and inspiration
 * + https://scotch.io/tutorials/build-a-crud-web-app-with-python-and-flask-part-one
+* + https://scotch.io/tutorials/build-a-crud-web-app-with-python-and-flask-part-two
+* + https://scotch.io/tutorials/build-a-crud-web-app-with-python-and-flask-part-three
+
+
 
 
 
