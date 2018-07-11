@@ -7,7 +7,7 @@ import logging
 from flask import render_template, request, redirect, url_for, session, flash
 from flask_login import login_required, current_user
 # internal
-from app.db_note import db_handler
+from app.note_db import db_note_handler
 from app.logs import db_logger
 
 from . import note
@@ -21,7 +21,7 @@ def note_view():
         # get by topic
         if request.form["action"] == "GetTopic":
             topic = request.form["selectvaluetopic"]
-            topic_result = db_handler.db_get_by_topic(topic)
+            topic_result = db_note_handler.db_get_by_topic(topic)
             if len(topic_result) < 1:
                 result = "No data saved for topic: " + format(topic)
                 return render_template("note/notes_view.html", note_data=topic_result, result=result)
@@ -31,7 +31,7 @@ def note_view():
 
         # get all
         elif request.form["action"] == "GetAll":
-            note_data = db_handler.db_all_note()
+            note_data = db_note_handler.db_all_note()
             result = "Get all topics"
             return render_template("note/notes_view.html", note_data=note_data, result=result)
         else:
@@ -44,7 +44,7 @@ def note_view():
 @note.route("/noteadmin", methods=['GET', 'POST'])
 @login_required
 def notes_db():
-    note_data = db_handler.db_all_note()
+    note_data = db_note_handler.db_all_note()
     result = "Get all"
     current_time = datetime.datetime.now()
     if not current_user.is_admin:
@@ -61,13 +61,13 @@ def notes_db():
             if len(note) < 5 or len(topic_url) < 6:
                 result = "Note must be > 5 and url must be > 6"
             else:
-                result = db_handler.db_insert_note(note, topic, topic_url)
+                result = db_note_handler.db_insert_note(note, topic, topic_url)
                 db_logger.db_logit("route noteadmin", "note added")
                
                 
         elif request.form["action"] == "DeleteNote":
                 notes_id = request.form["delid"]
-                result = db_handler.db_delete_note(notes_id)
+                result = db_note_handler.db_delete_note(notes_id)
                 
         else:
             pass
