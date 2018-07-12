@@ -33,7 +33,7 @@ def create_app(config_name):
     with app.app_context():
         from app import models as d 
         # print(d.init_user())
-        db.create_all()
+        # db.create_all()
         from app.note_db import db_note_handler as dbh
         # print(dbh.init_holder())
         # print(dbh.db_insert_note())
@@ -55,6 +55,9 @@ def create_app(config_name):
 
     from .tech import tech as tech_blueprint
     app.register_blueprint(tech_blueprint)
+
+    from .python_tutorials import python_tutorials as python_tutorials_blueprint
+    app.register_blueprint(python_tutorials_blueprint)
 
 
 
