@@ -107,6 +107,14 @@ body {
     background: #007bb5;
     color: white;
   }
+  /* notes view buttons */
+  .notes_view_cmd {
+     /* background-color: aqua;*/
+  }
+  /* notes admin buttons */
+  .notes_admin_cmd {
+    /* background-color: aqua;*/
+ }
 
 
 

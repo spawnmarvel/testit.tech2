@@ -8,7 +8,7 @@ sql_create_holder = "create table if not exists holder(id INTEGER PRIMARY KEY au
 sql_insert_holder = "insert into holder (note, topic, url, published) values (?, ?, ?, ?)"
 sql_get_all = "select * from holder order by id desc"
 sql_delete_id = "delete from holder where id = ?"
-sql_get_topic = "select * from holder where topic = ? order by id asc"
+sql_get_topic = "select * from holder where topic = ? order by id desc"
 sql_user_by_name = "select * from user where username = ?"
 
 

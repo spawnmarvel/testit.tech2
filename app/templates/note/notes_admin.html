@@ -1,19 +1,23 @@
 {% extends "base.html" %} {% block title %}Note Admin{% endblock %} {% block body %}
 
 <div class="jumbotron">
-  <p class="style_separator"> Note admin</p>
+  <p class="style_separator"> Note admin: {{ result }}</p>
   <!-- form for get btn -->
-  <form action="/noteadmin" method="GET">
-    <input type="submit" value="Refresh" class="btn btn-primary btn pull-right" />
+  <!-- notes admin cmd btn -->
+  <div class="notes_admin_cmd">
+    <!-- Collapse btn -->
+    <button type="button" class="btn btn-primary btn pull-left" data-toggle="collapse" data-target="#newnote">New note</button>
+    
+    <form action="/noteadmin" method="GET">
+      <input type="submit" value="Refresh" class="btn btn-primary pull-right" />
+    
+    </form>
     <br>
-    <h6>Result: {{ result }}</h6>
-  </form>
-  <!-- Collapse btn -->
-  <button type="button" class="btn btn-primary btn pull-right" data-toggle="collapse" data-target="#to_do_web">New note</button>
-  <br>
-  <br>
+    <br>
+  </div>
+   <!-- notes admin cmd btn -->
+  <div id="newnote" class="collapse">
 
-  <div id="to_do_web" class="collapse">
     <br>
     <form action="/noteadmin" method="POST">
       <div class="form-group">
