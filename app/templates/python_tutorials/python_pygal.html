@@ -3,15 +3,25 @@
 
   <p class="style_separator">Python Pygal:
     <br>
-    Quick tutorial from pythonprogramming.net: 
-    <a href="https://pythonprogramming.net/pygal-tutorial/" target="_blank">Pygal-tutorial</a>
-    <br>
     Pygal documentation:
     <a href="http://pygal.org/en/stable/" target="_blank">Pygal.org</a>
   </p>
-  {{ msg }}
   <form action="/pypygal" method="POST">
-    <input type="submit" name="action" value="RandomNr" class="btn btn-primary" />
+    <!--select tag -->
+    <div class="form-group">
+        <label for="sel1">Select graph type:
+        <select class="form-control" name="selectvalueadd" id="sel1">
+          <option>Line</option>
+          <option>XY</option>
+          <option>Bar</option>
+          <option>Treemap</option>
+          <option>SolidGauge</option>
+          <option>Multi-series pie</option>
+        </select>
+      </label>
+      {{ msg }}
+      </div>
+    <input type="submit" name="action" value="View" class="btn btn-primary" />
     <br>
     <br>
   </form>
