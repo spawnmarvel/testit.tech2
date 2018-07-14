@@ -59,6 +59,9 @@ def create_app(config_name):
     from .python_tutorials import python_tutorials as python_tutorials_blueprint
     app.register_blueprint(python_tutorials_blueprint)
 
+    from .chat import chat as chat_blueprint
+    app.register_blueprint(chat_blueprint)
+
 
 
     return app

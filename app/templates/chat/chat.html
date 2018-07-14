@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block title %}testit.tech{% endblock %} {% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <p>MathBot 1.0</p>
+        Become the master:
+        <progress value="{{ progress }}" max="100">
+        </progress>
+        <p>{{ tmp_state }}</p>
+        <p>Reward: {{ reward }}</p>
+        <a href="{{ ''.join(['', reward]) }}" target="_blank"> {{ reward }}</a>
+        <p><font size=2><strong>Note:</strong> progress tag is not supported in Internet Explorer 9 and earlier versions.</font></p>
+        <form action="/chat" method="POST">
+            <div class="form-group">
+                <input type="submit" name="action" value="Clear" class="btn btn-danger" />
+            </div>
+
+        </form>
+
+        <!-- form input section  -->
+        <form action="/chat" method="POST">
+            <div class="form-group">
+                <input class="form-control" id="inputdefault" type="text" name="chat_text" />
+                </br>
+                <input type="submit" name="action" value="Chat" class="btn btn-success" />
+            </div>
+        </form>
+
+        <!-- chatbot section  -->
+        {% for con in conversation_list %}
+
+
+        <div class="container_user darker">
+            <img src="/static/img/chat/robot.jpg" alt="robot">
+            <p class="break_them">{{ con[1] }}</p>
+            <span class="time-right">{{ chat_time }}</span>
+        </div>
+        <!-- user section -->
+        <div class="container_user">
+            <img src="/static/img/chat/boy.jpg" alt="user">
+            <p class="break_them">{{ con[0] }}</p>
+            <span class="time-right">{{ chat_time }}</span>
+        </div>
+
+
+        {% endfor %}
+        <!-- log section, 
+        <br>
+        <p>list items...:</p>
+        {% for con in conversation_list %}
+        <p>0 -> {{ con[0] }}</p>
+        <p>1 -> {{ con[1] }}</p>
+        {% endfor %}
+        debug  -->
+        
+        
+
+    </div>
+    <br>
+
+    <!-- done section  -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse4">MathBot 1.0</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <ul>
+                    <li>Answer to greeting, positive and negative</li>
+                    <li>Does math, multiplication from 0 to 12</li>
+                    <li>Can respond a bit weird</li>
+                    <li>
+                        <a href="http://www.nltk.org/book/" target="_blank">Natural Language Processing with Python (assignments)</a>
+                    </li>
+                    <li>
+                        <a href="https://botpublication.com/your-chatbot-should-have-a-game-loop-1a491ae370b5" target="_blank">your-chatbot-should-have-a-game-loop</a>
+                    </li>
+                    <li>
+                        <a href="https://apps.worldwritable.com/tutorials/chatbot/" target="_blank">tutorial chatbot</a>
+                    </li>
+                    <li>
+                        <a href="http://www.mitsuku.com/" target="_blank">mitsuku</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jumbo section  -->
+</div>
+{% endblock %}
