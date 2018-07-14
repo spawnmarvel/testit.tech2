@@ -25,117 +25,121 @@
           </select>
         </label>
         <!-- post btn -->
-        <input type="submit" name="action" value="GetTopic" class="btn btn-primary" />    
+        <input type="submit" name="action" value="GetTopic" class="btn btn-primary" />
         <!-- refresh / get all-->
         <input type="submit" name="action" value="GetAll" class="btn btn-primary" />
-         <!-- Collapse btn -->
-         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newnote">New note</button>
+        <!-- Collapse btn -->
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newnote">New note</button>
 
     </form>
 
     <br>
     <br>
     </div>
-    <!-- notes admin cmd btn -->
-    <div id="newnote" class="collapse">
+    <!--form group-->
+  </div>
+  <!--notes admin cmd-->
 
-      <br>
-      <form action="/noteadmin" method="POST">
+  <!-- notes admin cmd btn -->
+  <div id="newnote" class="collapse">
+
+    <br>
+    <form action="/noteadmin" method="POST">
+      <div class="form-group">
+        <!-- topic-->
+        <!--select tag -->
         <div class="form-group">
-          <!-- topic-->
-          <!--select tag -->
-          <div class="form-group">
-            <label for="sel1">Topic:
-              <select class="form-control" name="selectvalueadd" id="sel1">
-                <option>Python</option>
-                <option>SQL</option>
-                <option>NoSql</option>
-                <option>MapReduce</option>
-                <option>Hadoop / Hive</option>
-                <option>Programming in general</option>
-                <option>Html</option>
-                <option>Linux</option>
-                <option>Csharp</option>
-                <option>Other</option>
-              </select>
-            </label>
-          </div>
-          <!--topic end-->
-          <label>Note text:</label>
-          <textarea class="form-control" id="inputdefault" type="text" name="nt" placeholder="Some text about..."></textarea>
+          <label for="sel1">Topic:
+            <select class="form-control" name="selectvalueadd" id="sel1">
+              <option>Python</option>
+              <option>SQL</option>
+              <option>NoSql</option>
+              <option>MapReduce</option>
+              <option>Hadoop / Hive</option>
+              <option>Programming in general</option>
+              <option>Html</option>
+              <option>Linux</option>
+              <option>Csharp</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+        <!--topic end-->
+        <label>Note text:</label>
+        <textarea class="form-control" id="inputdefault" type="text" name="nt" placeholder="Some text about..."></textarea>
+        <br>
+        <!-- options -->
+        <label>Level of importance:</label>
+        <div class="radio">
+          <label>
+            <input type="radio" checked="checked" name="options" value="High">High</label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="options" value="Medium">Medium</label>
+        </div>
+        <!-- options end -->
+        <br>
+        <label>Url:</label>
+        <input class="form-control" id="inputdefault" type="text" name="url" placeholder="https://www.ba.no/" />
+        <br>
+        <br>
+        <!-- post btn -->
+        <input type="submit" name="action" value="Add" class="btn btn-primary" />
+
+      </div>
+    </form>
+    <!-- Collapse btn div -->
+  </div>
+  <!-- note db result  -->
+
+  {% for note in note_data %}
+  <!-- for each note in db, make a jumbotron div with form-->
+  <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
+
+    <h3>Topic: {{ note[2] }}:</h3>
+
+    <p class="break_them">{{ note[1] }}</p>
+    <br>
+    <br>
+    <small>Url:</small>
+    <a href="{{ ''.join(['', note[3]]) }}" target="_blank"> {{ note[3] }}</a>
+    <br>
+    <small>Published / Edit:</small>
+    <span class="glyphicon glyphicon-time"> {{ note[4] }}</span>
+
+    <br>
+    <br>
+    <span class="label label-success">{{ note[2] }}</span>
+    <form action="/noteadmin" method="POST">
+      <br>
+      <div class="form-group row">
+        <div class="col-xs-2">
+          <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
           <br>
-          <!-- options -->
-          <label>Level of importance:</label>
-          <div class="radio">
-            <label>
-              <input type="radio" checked="checked" name="options" value="High">High</label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="options" value="Medium">Medium</label>
-          </div>
-          <!-- options end -->
-          <br>
-          <label>Url:</label>
-          <input class="form-control" id="inputdefault" type="text" name="url" placeholder="https://www.ba.no/" />
-          <br>
-          <br>
-          <!-- post btn -->
-          <input type="submit" name="action" value="Add" class="btn btn-primary" />
+          <label for "disabledInput">
+            <input class="form-control" id="disabledInput" type="text" name="noteid" value="{{ note[0] }}" readonly/>
+
+
+          </label>
 
         </div>
-      </form>
-      <!-- Collapse btn div -->
-    </div>
-    <!-- note db result  -->
 
-    {% for note in note_data %}
-    <!-- for each note in db, make a jumbotron div with form-->
-    <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
-
-      <h3>Topic: {{ note[2] }}:</h3>
-
-      <p class="break_them">{{ note[1] }}</p>
+      </div>
+      <input type="submit" name="action" value="EditNote" class="btn btn-primary pull-left" />
       <br>
-      <br>
-      <small>Url:</small>
-      <a href="{{ ''.join(['', note[3]]) }}" target="_blank"> {{ note[3] }}</a>
-      <br>
-      <small>Published / Edit:</small>
-      <span class="glyphicon glyphicon-time"> {{ note[4] }}</span>
-
-      <br>
-      <br>
-      <span class="label label-success">{{ note[2] }}</span>
-      <form action="/noteadmin" method="POST">
-        <br>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
-            <br>
-            <label for "disabledInput">
-              <input class="form-control" id="disabledInput" type="text" name="noteid" value="{{ note[0] }}" readonly/>
-
-
-            </label>
-
-          </div>
-
-        </div>
-        <input type="submit" name="action" value="EditNote" class="btn btn-primary pull-left" />
-        <br>
-      </form>
-
-    </div>
-
-
-    {% endfor %}
-
-
-
-    <!-- make a div with p, h1 not table  -->
+    </form>
 
   </div>
 
 
-  {% endblock %}
+  {% endfor %}
+
+
+
+  <!-- make a div with p, h1 not table  -->
+
+</div>
+
+
+{% endblock %}

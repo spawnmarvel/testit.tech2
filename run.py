@@ -14,7 +14,9 @@ app = create_app(dv)
 def page_not_found(error):
     return render_template("/error/400.html")
 
-
+@app.errorhandler(400)
+def handle_bad_request(error):
+    return render_template("/error/400.html")
 
 if __name__ == '__main__':
     # for linux

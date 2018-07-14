@@ -46,12 +46,13 @@ def note_view():
 @login_required
 def notes_db():
     note_data = db_note_handler.db_all_note()
-    result = "Get all"
+    result = "Get all 1 "
     current_time = datetime.datetime.now()
+    
     if not current_user.is_admin:
         return redirect(url_for('home.index_view'))
     if request.method == 'POST' and current_user.is_admin:
-        
+        result += "Post"
         if request.form["action"] == "Add":
             #db logger add
             note = request.form["nt"]
@@ -64,20 +65,30 @@ def notes_db():
             else:
                 result = db_note_handler.db_insert_note(note, topic, topic_url)
                 db_logger.db_logit("route noteadmin", "note added")
+                # need to refresh for
+                note_data = db_note_handler.db_all_note()
 
         elif request.form["action"] == "GetTopic":
             topic = request.form["selectvaluetopic"]
             topic_result = db_note_handler.db_get_by_topic(topic)
+            result += " Topic check "
             if len(topic_result) < 1:
                 result = "No data saved for topic: " + format(topic)
-                return render_template("note/notes_admin.html", note_data=topic_result, result=result)
+               
             else:
                 result = "Avaliable data for " + format(topic)
-                return render_template("note/notes_admin.html", note_data=topic_result, result=result)     
+                
                 
         elif request.form["action"] == "DeleteNote":
                 notes_id = request.form["noteid"]
+                #session try
+                # session["notes_id_del"] = notes_id
+                # del_id = session["notes_id_del"]
                 result = db_note_handler.db_delete_note(notes_id)
+                result += " In delete note"
+                #need to refresh form
+                note_data = db_note_handler.db_all_note()
+               
 
         elif request.form["action"] == "EditNote":
              global NOTES_ID
@@ -86,14 +97,15 @@ def notes_db():
              return redirect(url_for('note.notes_edit'))
              # return notes_edit(notes_id) 
              # # redirect(url_for('note.notes_edit'))
-                
-        else:
-            pass
-    else:
-        result = "GET: " + str(current_time)
-           
-        return render_template("note/notes_admin.html", note_data=note_data, result=result)
+        elif request.form["action"] == "GetAll":
+             result += " In Get all 2"
+             note_data = db_note_handler.db_all_note()
+          
 
+        else:
+            result += " Zombie 3 "
+    #GET
+    result += " GET outer: " + str(current_time)
     return render_template("note/notes_admin.html", note_data=note_data, result=result)
 
 
