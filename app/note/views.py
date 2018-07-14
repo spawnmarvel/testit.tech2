@@ -74,9 +74,12 @@ def notes_db():
             result += " Topic check "
             if len(topic_result) < 1:
                 result = "No data saved for topic: " + format(topic)
+                topic_result = ""
+                return render_template("note/notes_admin.html", note_data=topic_result, result=result)
                
             else:
                 result = "Avaliable data for " + format(topic)
+                return render_template("note/notes_admin.html", note_data=topic_result, result=result)
                 
                 
         elif request.form["action"] == "DeleteNote":
