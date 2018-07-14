@@ -7,15 +7,15 @@
   <div class="notes_admin_cmd">
     <!-- Collapse btn -->
     <button type="button" class="btn btn-primary btn pull-left" data-toggle="collapse" data-target="#newnote">New note</button>
-    
+
     <form action="/noteadmin" method="GET">
       <input type="submit" value="Refresh" class="btn btn-primary pull-right" />
-    
+
     </form>
     <br>
     <br>
   </div>
-   <!-- notes admin cmd btn -->
+  <!-- notes admin cmd btn -->
   <div id="newnote" class="collapse">
 
     <br>
@@ -25,19 +25,19 @@
         <!--select tag -->
         <div class="form-group">
           <label for="sel1">Topic:
-          <select class="form-control" name="selectvalueadd" id="sel1">
-            <option>Python</option>
-            <option>SQL</option>
-            <option>NoSql</option>
-            <option>MapReduce</option>
-            <option>Hadoop / Hive</option>
-            <option>Programming in general</option>
-            <option>Html</option>
-            <option>Linux</option>
-            <option>Csharp</option>
-            <option>Other</option>
-          </select>
-        </label>
+            <select class="form-control" name="selectvalueadd" id="sel1">
+              <option>Python</option>
+              <option>SQL</option>
+              <option>NoSql</option>
+              <option>MapReduce</option>
+              <option>Hadoop / Hive</option>
+              <option>Programming in general</option>
+              <option>Html</option>
+              <option>Linux</option>
+              <option>Csharp</option>
+              <option>Other</option>
+            </select>
+          </label>
         </div>
         <!--topic end-->
         <label>Note text:</label>
@@ -71,7 +71,9 @@
   {% for note in note_data %}
   <!-- for each note in db, make a jumbotron div with form-->
   <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
+      
     <h3>Topic: {{ note[2] }}:</h3>
+    
     <p class="break_them">{{ note[1] }}</p>
     <br>
     <br>
@@ -84,13 +86,21 @@
     <span class="label label-success">{{ note[2] }}</span>
     <form action="/noteadmin" method="POST">
       <br>
-      <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
-      <br>
-      <input class="form-control" id="disabledInput" type="text" name="delid" value="{{ note[0] }}" readonly/>
-      <br>
+      <div class="form-group row">
+        <div class="col-xs-2">
+          <input type="submit" name="action" value="DeleteNote" class="btn btn-primary" />
+          <br>
+          <label for "disabledInput">
+            <input class="form-control" id="disabledInput" type="text" name="noteid" value="{{ note[0] }}" readonly/>
+            <br>
+           
+          </label>
+        </div>
+      </div>
+      <input type="submit" name="action" value="EditNote" class="btn btn-primary pull-right" />
     </form>
+    
   </div>
-
 
 
   {% endfor %}

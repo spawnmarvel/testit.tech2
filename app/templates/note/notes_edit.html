@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block title %}Note Edit{% endblock %} {% block body %}
+
+<div class="jumbotron">
+  <p class="style_separator"> Note edit: {{ rv }}</p>
+  <!-- form for get btn -->
+ 
+  <!-- notes admin cmd btn -->
+  
+
+    <br>
+    <!-- note db result  -->
+
+   {% for note in to_edit %}
+    <form action="/noteadminedit" method="POST">
+      <div class="form-group">
+        <!-- topic-->
+        <!--select tag -->
+        <div class="form-group">
+          <label for="sel1">Topic:
+            <select class="form-control" name="selectvalueadd" id="sel1">
+              <option>{{ note[2] }}</option>
+              <option>Python</option>
+              <option>SQL</option>
+              <option>NoSql</option>
+              <option>MapReduce</option>
+              <option>Hadoop / Hive</option>
+              <option>Programming in general</option>
+              <option>Html</option>
+              <option>Linux</option>
+              <option>Csharp</option>
+              <option>Other</option>
+            </select>
+          </label>
+        <br>
+        <!--topic end-->
+        <label>Note text:</label>
+        <textarea class="form-control"  id="inputdefault" type="text" name="nt" placeholder="Some text about...">{{ note[1] }}</textarea>
+        <br>
+        <!-- options -->
+        <label>Level of importance:</label>
+        <div class="radio">
+          <label>
+            <input type="radio" checked="checked" name="options" value="High">High</label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="options" value="Medium">Medium</label>
+        </div>
+        <!-- options end -->
+        <br>
+        <label>Url:</label>
+        <input class="form-control" id="inputdefault" type="text" name="url" placeholder="https://www.ba.no/" value="{{ note[3] }}" />
+        <br>
+        <br>
+        <!-- post btn -->
+        <br>
+       <div class="form-group row">
+         <div class="col-xs-2">
+           <input type="submit" name="action" value="UpdateNote" class="btn btn-primary" />
+           <br>
+           <label for "disabledInput">
+             <input class="form-control" id="disabledInput" type="text" name="noteid" value="{{ note[0] }}" readonly/>
+             <br>
+            
+           </label>
+         </div>
+       </div>
+
+      </div>
+    </form>
+    {% endfor %}
+    <!-- Collapse btn div -->
+  </div>
+  <!-- note db result  -->
+  <!-- make a div with p, h1 not table  -->
+
+</div>
+
+
+{% endblock %}

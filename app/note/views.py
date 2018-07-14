@@ -66,8 +66,13 @@ def notes_db():
                
                 
         elif request.form["action"] == "DeleteNote":
-                notes_id = request.form["delid"]
+                notes_id = request.form["noteid"]
                 result = db_note_handler.db_delete_note(notes_id)
+
+        elif request.form["action"] == "EditNote":
+             notes_id = request.form["noteid"]
+             result = "Wish to edit " + str(notes_id) + " Load it"
+             return notes_edit(notes_id) # redirect(url_for('note.notes_edit'))
                 
         else:
             pass
@@ -77,6 +82,13 @@ def notes_db():
         return render_template("note/notes_admin.html", note_data=note_data, result=result)
 
     return render_template("note/notes_admin.html", note_data=note_data, result=result)
+
+
+@note.route("/noteadminedit", methods=["GET", "POST"])
+def notes_edit(notes_id):
+    to_edit = db_note_handler.db_get_by_id(notes_id)
+    rv = notes_id
+    return render_template("note/notes_edit.html", to_edit=to_edit,rv=rv)
 
 
 

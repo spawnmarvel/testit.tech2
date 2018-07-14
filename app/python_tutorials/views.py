@@ -28,3 +28,8 @@ def py_pygal():
     return render_template("python_tutorials/python_pygal.html", graph_data=graph_data, msg=msg)
 
 
+@python_tutorials.route("/forensic", methods=['GET', 'POST'])
+def py_forensic():
+    return render_template("python_tutorials/python_forensic.html")
+
+
