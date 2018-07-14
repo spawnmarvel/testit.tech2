@@ -10,6 +10,7 @@ sql_get_all = "select * from holder order by id desc"
 sql_delete_id = "delete from holder where id = ?"
 sql_get_topic = "select * from holder where topic = ? order by id desc"
 sql_get_by_id = "select * from holder where id = ?"
+sql_update_note = "update holder set note = ?, topic = ?, url = ?, published = ? where id = ?"
 # for init? must check
 sql_user_by_name = "select * from user where username = ?"
 
@@ -111,6 +112,23 @@ def db_get_by_id(note_id):
     except Exception as e:
         msg = e
     return msg
+
+def db_update_note(note, topic, url, published, n_id):
+    msg = None
+    global conn
+    try:
+        conn = sqlite3.connect(database)
+        with conn:
+            cur = conn.cursor()
+            global sql_update_note
+            cur.execute(sql_update_note, (note,topic, url, published, n_id))
+            conn.commit()
+            row = "Updated note " + format(n_id)
+            msg = row
+    except Exception as e:
+        msg = e
+    return msg
+
 
 def get_user_by_name(u_name):
     msg = None

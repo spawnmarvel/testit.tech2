@@ -12,6 +12,7 @@ from app.logs import db_logger
 
 from . import note
 
+NOTES_ID = ""
 
 @note.route("/noteview" , methods=['GET', 'POST'])
 def note_view():
@@ -63,16 +64,28 @@ def notes_db():
             else:
                 result = db_note_handler.db_insert_note(note, topic, topic_url)
                 db_logger.db_logit("route noteadmin", "note added")
-               
+
+        elif request.form["action"] == "GetTopic":
+            topic = request.form["selectvaluetopic"]
+            topic_result = db_note_handler.db_get_by_topic(topic)
+            if len(topic_result) < 1:
+                result = "No data saved for topic: " + format(topic)
+                return render_template("note/notes_admin.html", note_data=topic_result, result=result)
+            else:
+                result = "Avaliable data for " + format(topic)
+                return render_template("note/notes_admin.html", note_data=topic_result, result=result)     
                 
         elif request.form["action"] == "DeleteNote":
                 notes_id = request.form["noteid"]
                 result = db_note_handler.db_delete_note(notes_id)
 
         elif request.form["action"] == "EditNote":
+             global NOTES_ID
              notes_id = request.form["noteid"]
-             result = "Wish to edit " + str(notes_id) + " Load it"
-             return notes_edit(notes_id) # redirect(url_for('note.notes_edit'))
+             NOTES_ID = notes_id
+             return redirect(url_for('note.notes_edit'))
+             # return notes_edit(notes_id) 
+             # # redirect(url_for('note.notes_edit'))
                 
         else:
             pass
@@ -85,9 +98,33 @@ def notes_db():
 
 
 @note.route("/noteadminedit", methods=["GET", "POST"])
-def notes_edit(notes_id):
-    to_edit = db_note_handler.db_get_by_id(notes_id)
-    rv = notes_id
+def notes_edit():
+    global NOTES_ID
+    if not current_user.is_admin:
+        return redirect(url_for('home.index_view'))
+    if request.method == "POST" and current_user.is_admin:
+         if request.form["action"] == "UpdateNote":
+            # notes_id = request.form["noteid"]
+            to_edit = db_note_handler.db_get_by_id(NOTES_ID)
+            rv = NOTES_ID
+            note = request.form["nt"]
+            # drop = request.form["drop_option"]
+            topic = request.form["selectvalueadd"]
+            # level_ = request.form["options"]
+            topic_url = request.form["url"]
+            current_time = datetime.datetime.now()
+            if len(note) < 5 or len(topic_url) < 6:
+                rv = "Note must be > 5 and url must be > 6"
+            else:
+                
+                rv = db_note_handler.db_update_note(note, topic, topic_url, current_time, NOTES_ID)
+                db_logger.db_logit("route noteadminedit", "note updated")
+                return redirect(url_for("note.notes_db"))
+            return render_template("note/notes_edit.html", to_edit=to_edit,rv=rv)
+    #GET request from /noteadmin edit btn
+   
+    to_edit = db_note_handler.db_get_by_id(NOTES_ID)
+    rv = NOTES_ID
     return render_template("note/notes_edit.html", to_edit=to_edit,rv=rv)
 
 
