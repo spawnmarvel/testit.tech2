@@ -1,14 +1,8 @@
 {% extends "base.html" %} {% block title %}testit.tech{% endblock %} {% block body %}
 <div class="jumbotron">
-    <div class="container">
-        <p>MathBot 1.0</p>
-        Become the master:
-        <progress value="{{ progress }}" max="100">
-        </progress>
-        <p>{{ tmp_state }}</p>
-        <p>Reward: {{ reward }}</p>
-        <a href="{{ ''.join(['', reward]) }}" target="_blank"> {{ reward }}</a>
-        <p><font size=2><strong>Note:</strong> progress tag is not supported in Internet Explorer 9 and earlier versions.</font></p>
+    <!--<div class="container"> -->
+        <p>MathBot 1.5</p>
+        <small>Score: {{ progress }} </small>
         <form action="/chat" method="POST">
             <div class="form-group">
                 <input type="submit" name="action" value="Clear" class="btn btn-danger" />
@@ -31,13 +25,13 @@
 
         <div class="container_user darker">
             <img src="/static/img/chat/robot.jpg" alt="robot">
-            <p class="break_them">{{ con[1] }}</p>
+            <p class="break_them_chat">{{ con[1] }}</p>
             <span class="time-right">{{ chat_time }}</span>
         </div>
         <!-- user section -->
         <div class="container_user">
             <img src="/static/img/chat/boy.jpg" alt="user">
-            <p class="break_them">{{ con[0] }}</p>
+            <p class="break_them_chat">{{ con[0] }}</p>
             <span class="time-right">{{ chat_time }}</span>
         </div>
 
@@ -54,7 +48,7 @@
         
         
 
-    </div>
+    <!--</div>-->
     <br>
 
     <!-- done section  -->
@@ -62,7 +56,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse4">MathBot 1.0</a>
+                    <a data-toggle="collapse" href="#collapse4">MathBot</a>
                 </h4>
             </div>
             <div id="collapse4" class="panel-collapse collapse">
@@ -87,7 +81,7 @@
             </div>
         </div>
     </div>
-
+    <small>Image from <a href="https://www.flaticon.com/" target="_blank">Free vector images flaticon.com</a></small>
 
     <!-- jumbo section  -->
 </div>

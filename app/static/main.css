@@ -16,11 +16,16 @@ body {
     border-radius: 10px;
 
 }
+
 .make_small {
     font-size: 50%
 }
 
 /* Chat containers */
+.break_them_chat {
+    word-break: break-all;
+    font-size: 0.875em; /* 14px/16=0.875em */
+}
 .container_user {
     border: 2px solid #dedede; 
     background-color: #f1f1f1; 
@@ -32,6 +37,7 @@ body {
 .darker {
     border-color: #ccc;
     background-color: #ddd;
+   
 }
 .footer {
     margin-left: 2%;
