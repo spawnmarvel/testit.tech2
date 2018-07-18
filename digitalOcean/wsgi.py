@@ -5,7 +5,7 @@ from flask import render_template
 dv = "development"
 pr = "production"
 
-app = create_app(dv)
+app = create_app(pr)
 
 @app.errorhandler(404)
 def page_not_found(error):

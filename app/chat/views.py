@@ -11,47 +11,31 @@ from .model import chatbot as chatbot
 from .model import human as human
 from . import chat
 
-conversation_list = []
-
-# conversation_list.append("chatbot: Hi, I am your chatbot")
-# conversation_list.append("chatbot: Please talk to the chatbot..")
-start_time = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-initial_tup = ("......","Hi, I am your chatbot, please say hi",start_time)
-conversation_list.append(initial_tup)
-count_loop = 0
-
-state_list = []
+ # conversation_list = []
 
 
-# username_ = " "
+# start_time = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+# initial_tup = ("......","Hi, I am your chatbot, please say hi",start_time)
+# conversation_list.append(initial_tup)
+
+
+
 
 def get_chat_time():
      chat_time = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
      return chat_time
 
 
-def nocache(view):
-    @wraps(view)
-    def no_cache(*args, **kwargs):
-        response = make_response(view(*args, **kwargs))
-        response.headers['Last-Modified'] = datetime.now()
-        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
-        response.headers['Pragma'] = 'no-cache'
-        response.headers['Expires'] = '-1'
-        return response
-        
-    return update_wrapper(no_cache, view)
-
-
 @chat.route('/chat',methods = ['POST', 'GET'])
-# @nocache
 def result():
-    
-    reward = controller.get_response_reward()
+    # new controller on visit, remove all global vars
+    rv_session = 0
     progress = controller.get_progress()
-    global count_loop
     robot_data = ""
-    global conversation_list
+    conversation_list = []
+    start_time = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    initial_tup = ("......","Hi, I am your chatbot, please say hi",start_time)
+    conversation_list.append(initial_tup)
     tmp_list = []
     chat_counter = len(conversation_list)
     chat_time = get_chat_time()
@@ -61,10 +45,14 @@ def result():
 
     if request.method == 'POST':
 
-        
 
         if request.form["action"] == "Chat":
-            count_loop += 1 # for debug
+
+            if "conversation" in session:
+                session["conversation"] = session.get("conversation") + 1
+            else:
+                session["conversation"] = 1 #first entry
+            rv_session = "Session " + format(session.get("conversation"))
             # user input
             tmp_user_data = request.form["chat_text"]
             user_data = str(tmp_user_data)
@@ -98,17 +86,15 @@ def result():
             conversation_list.append(start_fresh_tup)
             controller.set_state("initial")
             controller.set_progress(5)
-            controller.clear_response_reward()
-            # global username_
-            # session.pop("username", None)
+            rv_session = format(session.pop("conversation", None))
         else:
             pass
 
 
         # conversation_list.reverse()
-    else:
+    # else:
         # conversation_list.reverse()
         #is GET
         
-        return render_template("chat/chat.html", conversation_list = conversation_list, chat_time = chat_time, progress = progress, reward = reward, tmp_state = tmp_state )
-    return render_template("chat/chat.html", conversation_list = conversation_list, chat_time = chat_time, progress = progress, reward = reward, tmp_state = tmp_state)
+        # return render_template("chat/chat.html", conversation_list = conversation_list, chat_time = chat_time, progress = progress, rv_session=rv_session)
+    return render_template("chat/chat.html", conversation_list = conversation_list, chat_time = chat_time, progress = progress, rv_session=rv_session)

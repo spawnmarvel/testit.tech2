@@ -51,6 +51,7 @@ def notes_db():
     
     if not current_user.is_admin:
         return redirect(url_for('home.index_view'))
+    
     if request.method == 'POST' and current_user.is_admin:
         result += "Post"
         if request.form["action"] == "Add":

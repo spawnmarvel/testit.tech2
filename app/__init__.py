@@ -27,6 +27,8 @@ def create_app(config_name):
     login_manager.init_app(app)
     login_manager.login_message = "Not authorized"
     login_manager.login_view = "auth.login"
+    login_manager.session_protection = "strong"
+
 
     
     # migrate = Migrate(app, db)
@@ -61,6 +63,9 @@ def create_app(config_name):
 
     from .chat import chat as chat_blueprint
     app.register_blueprint(chat_blueprint)
+
+    from .test import test as test_blueprint
+    app.register_blueprint(test_blueprint)
 
 
 

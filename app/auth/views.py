@@ -1,6 +1,7 @@
-from flask import flash, redirect, render_template, url_for
-from flask_login import login_required, login_user, logout_user
-
+from flask import flash, redirect, render_template, url_for, session
+from flask_login import login_required, login_user, logout_user, current_user, user_logged_in
+import datetime
+# http://flask-login.readthedocs.io/en/latest/
 from . import auth
 from app.auth.forms import LoginForm, RegistrationForm
 from .. import db
@@ -39,15 +40,15 @@ def login():
     """
     form = LoginForm()
     if form.validate_on_submit():
-
+        
         # check whether employee exists in the database and whether
         # the password entered matches the password in the database
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(
                 form.password.data):
             # log employee in
-            login_user(user)
-
+            login_user(user, duration = datetime.timedelta(seconds=60))
+            print(user_logged_in)
             # redirect to the dashboard page after login
             db_logger.db_logit("route login", format(user))
             return redirect(url_for('home.dashboard'))
